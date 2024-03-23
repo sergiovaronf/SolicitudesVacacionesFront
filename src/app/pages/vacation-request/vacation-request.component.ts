@@ -20,7 +20,7 @@ export class VacationRequestComponent {
   displayedColumns: string[] = ['fechaCreacion', 'fechaInicio', 'fechaFin', 'fechaRetorna', 'diasSolicita', 'estado'];
 
 
-  listEmployee: any[] = [];
+  listRequest: any[] = [];
 
   searchFilter;
   private searchFilterSubject = new Subject<string>();
@@ -59,10 +59,10 @@ export class VacationRequestComponent {
     });
   }
 
-  loadTable(){
-    if(this.user){
+  loadTable() {
+    if (this.user) {
       this.loadDataEmployee();
-    }else{
+    } else {
       this.loadData();
     }
   }
@@ -70,27 +70,16 @@ export class VacationRequestComponent {
   loadData() {
     this.vacationRequestService.getListPage(this.pageSize, this.pageIndex).subscribe({
       next: (data: any) => {
-        this.cantidad = data.totalElements;
-        this.listEmployee = data.content;
-        this.dataSource.data = this.listEmployee;
-        this.dataSource.sort = this.sort;
-      }
-    });
-  }
-
-  loadDataEmployee() {
-    this.vacationRequestService.getListPageEmployee(this.user.empleado?.idEmpleado, this.pageSize, this.pageIndex).subscribe({
-      next: (data: any) => {
-        if(data){ 
-          this.dataSource = new MatTableDataSource();    
+        if (data) {
+          this.dataSource = new MatTableDataSource();
           this.cantidad = data.totalElements;
-          this.listEmployee = data.content;
-          this.dataSource.data = this.listEmployee;
+          this.listRequest = data.content;
+          this.dataSource.data = this.listRequest;
           this.dataSource.sort = this.sort;
-        }else{
-          this.dataSource = new MatTableDataSource();    
+        } else {
+          this.dataSource = new MatTableDataSource();
           this.cantidad = 0;
-          this.listEmployee = [];
+          this.listRequest = [];
           this.dataSource.data = [];
           this.dataSource.sort = this.sort;
         }
@@ -98,11 +87,35 @@ export class VacationRequestComponent {
     });
   }
 
-  changeEmployee(e) {    
+  loadDataEmployee() {
+    this.vacationRequestService.getListPageEmployee(this.user.empleado?.idEmpleado, this.pageSize, this.pageIndex).subscribe({
+      next: (data: any) => {
+        if (data) {
+          this.dataSource = new MatTableDataSource();
+          this.cantidad = data.totalElements;
+          this.listRequest = data.content;
+          this.dataSource.data = this.listRequest;
+          this.dataSource.sort = this.sort;
+        } else {
+          this.dataSource = new MatTableDataSource();
+          this.cantidad = 0;
+          this.listRequest = [];
+          this.dataSource.data = [];
+          this.dataSource.sort = this.sort;
+        }
+      }
+    });
+  }
+
+  changeEmployee(e) {
     this.pageIndex = 0;
     this.pageSize = 10;
     this.user = e;
-    this.loadDataEmployee();
+    if (e) {
+      this.loadDataEmployee();
+    }else{
+      this.loadData();
+    }
   }
 
   changePage(e: any) {
@@ -112,7 +125,7 @@ export class VacationRequestComponent {
 
   openAddEmployee() {
     const dialogRef = this._dialog.open(FormModalRequestComponent, {
-      data: { request: undefined, user : this.user?.idUsuario , view: undefined },
+      data: { request: undefined, user: this.user?.idUsuario, view: undefined },
       width: '80vh',
       disableClose: true,
       autoFocus: false

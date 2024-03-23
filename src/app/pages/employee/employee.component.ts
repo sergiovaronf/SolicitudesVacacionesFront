@@ -41,10 +41,19 @@ export class EmployeeComponent {
   loadDataEmployee() {
     this.employeeService.getListPage(this.pageSize, this.pageSize * this.pageIndex).subscribe({
       next: (data: any) => {
-        this.cantidad = data.totalElements;
-        this.listEmployee = data.content;
-        this.dataSource.data = this.listEmployee;
-        this.dataSource.sort = this.sort;
+        if (data) {
+          this.dataSource = new MatTableDataSource();
+          this.cantidad = data.totalElements;
+          this.listEmployee = data.content;
+          this.dataSource.data = this.listEmployee;
+          this.dataSource.sort = this.sort;
+        } else {
+          this.dataSource = new MatTableDataSource();
+          this.cantidad = 0;
+          this.listEmployee = [];
+          this.dataSource.data = [];
+          this.dataSource.sort = this.sort;
+        }
       }
     });
   }

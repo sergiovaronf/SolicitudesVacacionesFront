@@ -11,6 +11,7 @@
             <mat-form-field appearance="outline" floatLabel="always">
                 <mat-label>Empleado</mat-label>
                 <mat-select [(ngModel)]="user" placeholder="Seleccionar" (valueChange)="changeEmployee($event)">
+                    <mat-option [value]="undefined">Seleccionar</mat-option>
                     <mat-option *ngFor="let val of listUser" [value]="val">{{val?.empleado?.nombre + " " + val?.empleado?.apellido}}
                     </mat-option>
                 </mat-select>
