@@ -56,7 +56,7 @@ export class UserService {
   }
 
   createPosition() {
-    return this.http.post(`${url}/position`, { cargo: "Empleado", descripcion: "Empleado", activo: "ACTIVO"}, this.headers);
+    return this.http.post(`${url}/position`, { cargo: "Ingeniero", descripcion: "Empleado", activo: "ACTIVO"}, this.headers);
   }
 }
 
