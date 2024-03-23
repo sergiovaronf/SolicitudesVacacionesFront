@@ -1,0 +1,199 @@
+mat-toolbar {
+  padding: 2em 0;
+  .contenidoLogo {
+    width: 100%;
+    text-align: left;
+    margin: 0rem 1rem;
+    font-weight: bolder;
+    color: var(--primary-color);
+    display: flex;
+
+    h2 {
+      margin: .2em;
+      font-size: 2rem;
+    }
+  }
+
+  .row {
+    width: 200px;
+
+    .nameProfile {
+      font-size: 1.5em;
+    }
+  }
+}
+
+//Boton user
+
+.contenedor {
+  display: flex;
+}
+
+.imagen-circular {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--primary-color);
+  background-color: var(--light-bg-color);
+  margin-right: 20px;
+}
+
+.imagen-circular mat-icon {
+  text-transform: uppercase;
+  font-size: 20px;
+  color: var(--primary-color);
+  display: flex;
+  width: 100%;
+  height: 100%;
+  line-height: 2;
+  padding: .2em .9em;
+  font-family: 'Rubik', sans-serif;
+}
+
+.textos {
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 10px;
+}
+
+.texto-grande {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+  font-size: 18px;
+}
+
+.texto-pequeno {
+  font-size: 14px;
+}
+
+.icono-material {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.menu-color {
+  background-color: var(--dark-color);
+}
+
+//Resposive
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 20em;
+}
+
+.logo_css {
+  width: 170px;
+  height: auto;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.flexExpand {
+  flex: 1 1 auto;
+}
+
+.header_menu {
+  padding: 1em 0;
+  display: flex;
+}
+
+h3 {
+  text-transform: uppercase;
+}
+
+mat-toolbar {
+  height: 5rem;
+}
+
+mat-icon {
+  font-size: 2rem;
+  height: auto;
+  width: auto;
+}
+
+.profile_css {
+  margin-top: 2rem;
+  margin-bottom: .5rem;
+  display: flex;
+}
+
+.dot {
+  margin: auto;
+  height: 100px;
+  width: 100px;
+  background-color: #d1fbd9;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+//
+.iconProfile {
+  vertical-align: top;
+  font-size: 1em;
+  color: #00493f;
+}
+
+.text_profile_css {
+  text-align: center;
+  align-items: center;
+}
+
+.text_search {
+  color: #00493f;
+  margin-left: .5rem;
+  font-weight: 500;
+}
+
+//
+.active-list-item {
+  background-color: #00493f;
+
+  span {
+    color: white;
+  }
+}
+
+mat-sidenav {
+  background-color: var(--dark-color);
+}
+
+
+@media only screen and (max-width: 1280px) {
+
+  mat-toolbar {
+    height: 3.5rem;
+  }
+
+  .contenidoLogo {
+    img {
+      width: 115px;
+    }
+  }
+
+  .contenedor {
+    color: var(--white-color);
+
+    .texto-grande {
+      color: var(--primary-color);
+    }
+  }
+}

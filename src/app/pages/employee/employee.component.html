@@ -1,0 +1,79 @@
+<div class="nav">
+    <div class="items content_Cabecera">
+        <div class="left-item">
+            <div class="title">EMPLEADOS</div>
+        </div>
+        <div class="right-item btn_and_search">
+            <button mat-raised-button color="primary" (click)="openAddEmployee()">
+                <mat-icon>add</mat-icon>
+                Nueva Empleado
+            </button>
+        </div>
+ 
+    </div>
+    <div class="example-container table-container">
+        <div class="example-loading-shade" *ngIf="isLoadingResults">
+            <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        </div>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-paginator-custom">
+            <ng-container matColumnDef="document">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Documento</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    {{element.tipoDocumento + ' ' + element.documento}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Nombres </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    {{element.nombre + ' ' + element.apellido}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="phone">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.telefono}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="addres">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Direccion </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.direccion}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Ingreso </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.fechaIngreso | date: 'dd/MM/yyyy' }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="type">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Contrato</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.tipoContrato}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="state">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.estadoEmpleado}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="detalles">
+                <mat-header-cell *matHeaderCellDef>Detalles</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-icon-button  (click)="openEditForm(element, true)" matTooltip="Ver">
+                        <i style="font-size: medium;" class="ri-eye-line"></i>
+                    </button>
+                    <button mat-icon-button  (click)="openEditForm(element)" matTooltip="Editar">
+                        <i style="font-size: medium;" class="ri-edit-box-line"></i>
+                    </button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </table>        
+    </div>
+    <div>
+        <hr class="linea-tabla">
+        <mat-paginator class="mat-paginator-custom" [hidePageSize]="true" [showFirstLastButtons]="true"
+            [length]="cantidad" [pageSize]="pageSize" (page)="changePage($event)">
+        </mat-paginator>
+    </div>
+</div>

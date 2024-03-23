@@ -1,0 +1,77 @@
+.nav {
+    padding: 2em;
+    height: auto;
+
+    .items {
+        display: flex;
+        justify-content: space-between;
+        justify-content: center;
+        padding: 1rem 0;
+
+        .left-item {
+            flex: 1;
+
+            .title {
+                font-size: 30px;
+                font-weight: bold;
+                margin-top: 10px;
+                text-transform: uppercase;
+
+                span {
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .right-item {
+            button {
+                padding: 1.7em 2em;
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            mat-form-field {
+                margin-left: 1.5em;
+            }
+        }
+    }
+
+    table {
+        height: 80%;
+    }
+}
+
+.example-container {
+    box-shadow: -1px 2px 2px 2px rgb(215, 215, 215);
+    overflow: auto;
+}
+
+@media only screen and (max-width: 840px) {
+
+    .content_Cabecera {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn_and_search {
+        margin-top: 15px;
+        width: 100% !important;
+        display: flex;
+        justify-content: space-between;
+
+        .right-item {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    
+    mat-cell {
+        width: 11rem;
+    }    
+}
+
+::ng-deep .mat-sort-header-container:not(.mat-sort-header-sorted) .mat-sort-header-arrow {
+    opacity: 0.54 !important;
+    transform: translateY(0px) !important;
+}
+

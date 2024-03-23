@@ -1,0 +1,74 @@
+<div class="dialog-container">
+    <button mat-icon-button (click)="_dialogRef.close(true)" class="close-button">
+        <mat-icon>close</mat-icon>
+    </button>
+    <div mat-dialog-title>
+        <h3 *ngIf="!view">{{data.request ? 'Editar': 'Crear'}} solitud de vacaciones</h3>
+        <h3 *ngIf="view">Ver solitud de vacaciones</h3>
+    </div>
+    <form [formGroup]="empForm">
+        <div mat-dialog-content class="content">
+            <div class="row">
+                <mat-form-field appearance="outline" floatLabel="always" *ngIf="!data.user">
+                    <mat-label>Empleado</mat-label>
+                    <mat-select formControlName="idUsuario" placeholder="Seleccionar">
+                        <mat-option *ngFor="let val of listUser" [value]="val.idUsuario">{{val?.empleado?.nombre + " " + val?.empleado?.apellido}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="empForm.get('idUsuario').hasError('required')">
+                        El cargo es requerido
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Dias Solicitados</mat-label>
+                    <input matInput type="number" placeholder="0" formControlName="diasSolicita">
+                    <mat-error *ngIf="empForm.get('diasSolicita').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>                
+            </div>
+
+            <div class="row">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Fecha Inicio</mat-label>
+                    <input matInput type="date" placeholder="Fecha Inicio" formControlName="fechaInicio">
+                    <mat-error *ngIf="empForm.get('fechaInicio').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Fecha Fin</mat-label>
+                    <input matInput type="date" placeholder="Fecha Fin" formControlName="fechaFin">
+                    <mat-error *ngIf="empForm.get('fechaFin').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Fecha Retorno</mat-label>
+                    <input matInput type="date" placeholder="Fecha Retorno" formControlName="fechaRetorna">
+                    <mat-error *ngIf="empForm.get('fechaRetorna').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row-full">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Observaciones</mat-label>
+                    <input matInput type="text" placeholder="Observaciones" formControlName="observaciones"
+                        maxlength="100">
+                    <mat-error *ngIf="empForm.get('observaciones').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions class="action" *ngIf="!view">
+            <button mat-raised-button color="primary" (click)="saveData()">{{data.request ? 'ACTUALIZAR':
+                'CREAR'}}</button>
+        </div>
+    </form>
+</div>

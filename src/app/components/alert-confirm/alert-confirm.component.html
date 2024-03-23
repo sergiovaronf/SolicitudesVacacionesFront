@@ -1,0 +1,7 @@
+<div class="alert">    
+    <p>{{data.message}}</p>
+    <div style="display: flex; gap: 10px">
+        <button mat-raised-button color="primary" (click)="onNoClick()">Cancelar</button>
+        <button mat-raised-button color="primary"  [mat-dialog-close]="true">Aceptar</button>
+    </div>
+</div>

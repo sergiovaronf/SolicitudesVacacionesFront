@@ -1,0 +1,130 @@
+<div class="dialog-container">
+    <button mat-icon-button (click)="_dialogRef.close(true)" class="close-button">
+        <mat-icon>close</mat-icon>
+    </button>
+    <div mat-dialog-title>
+        <h3 *ngIf="!view">{{data.employee ? 'Editar': 'Crear'}} empleado</h3>
+        <h3 *ngIf="view">Ver empleado</h3>
+    </div>
+    <form [formGroup]="empForm">
+        <div mat-dialog-content class="content">
+            <div class="row">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Tipo de Documento</mat-label>
+                    <mat-select formControlName="tipoDocumento" placeholder="Seleccionar">
+                        <mat-option *ngFor="let val of documentType" [value]="val">{{val}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="empForm.get('tipoDocumento').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Documento</mat-label>
+                    <input matInput type="text" placeholder="Documento" formControlName="documento" maxlength="10">
+                    <mat-error *ngIf="empForm.get('documento').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Nombres</mat-label>
+                    <input matInput type="text" placeholder="Nombres" formControlName="nombre" maxlength="30">
+                    <mat-error *ngIf="empForm.get('nombre').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput type="text" placeholder="Apellidos" formControlName="apellido" maxlength="30">
+                    <mat-error *ngIf="empForm.get('apellido').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput type="text" placeholder="Telefono" formControlName="telefono" maxlength="14">
+                    <mat-error *ngIf="empForm.get('telefono').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Tipo de Contrato</mat-label>
+                    <mat-select formControlName="tipoContrato" placeholder="Seleccionar">
+                        <mat-option *ngFor="let val of userType" [value]="val">{{val}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="empForm.get('tipoContrato').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row-full">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Direccion de despacho</mat-label>
+                    <input matInput type="text" placeholder="Dirección" formControlName="direccion"
+                        maxlength="100">
+                    <mat-error *ngIf="empForm.get('direccion').hasError('required')">
+                        El campo es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Fecha Ingreso</mat-label>
+                    <input matInput type="date" formControlName="fechaIngreso">
+                    <mat-error *ngIf="empForm.get('fechaIngreso').hasError('required')">
+                        La fecha de ingreso es requerida
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="estadoEmpleado" placeholder="Seleccionar">
+                        <mat-option *ngFor="let val of stateType" [value]="val">{{val}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="empForm.get('estadoEmpleado').hasError('required')">
+                        El estado es requerido
+                    </mat-error>
+                </mat-form-field>                
+            </div>
+
+            <div class="row">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Cargo</mat-label>
+                    <mat-select formControlName="idCargo" placeholder="Seleccionar">
+                        <mat-option *ngFor="let val of listPosition" [value]="val.idCargo">{{val.cargo}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="empForm.get('idCargo').hasError('required')">
+                        El cargo es requerido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" floatLabel="always" *ngIf="!data.employee" [formGroup]="userForm">
+                    <mat-label>Rol</mat-label>
+                    <mat-select formControlName="idRol" placeholder="Seleccionar">
+                        <mat-option *ngFor="let val of listRole" [value]="val.idRol">{{val.rol}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="userForm.get('idRol').hasError('required')">
+                        El rol es requerido
+                    </mat-error>
+                </mat-form-field>                
+            </div>
+        </div>
+        <div mat-dialog-actions class="action" *ngIf="!view">
+            <button mat-raised-button color="primary" (click)="saveData()">{{data.employee ? 'ACTUALIZAR':
+                'CREAR'}}</button>
+        </div>
+    </form>
+</div>

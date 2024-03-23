@@ -1,0 +1,14 @@
+<mat-grid-list [cols]="(isHandset$ | async) ? 2 : 1" rowHeight="100vh">
+    <mat-grid-tile class="column-2" *ngIf="(isHandset$ | async)">
+        <div class="info_login" >
+            <div class="logo">
+                <img src="/assets/icon/logo.png" alt="">
+            </div>
+        </div>  
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="login-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list> 

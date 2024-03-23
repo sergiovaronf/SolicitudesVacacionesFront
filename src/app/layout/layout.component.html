@@ -1,0 +1,65 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    mode="over" [opened]="false">
+    <div class="header_menu">
+      <mat-toolbar>
+        <div class="contenedor">
+          <div class="imagen-circular">
+            <mat-icon>{{siglas}}</mat-icon>
+          </div>
+          <div class="textos">
+            <p class="texto-grande"><strong>Usuario</strong></p>
+            <p class="texto-pequeno">Administrador</p>
+          </div>
+        </div>
+      </mat-toolbar>
+    </div>
+    <ng-material-multilevel-menu [configuration]='config' [items]='appitems' (selectedItem)="selectedItem($event)">
+    </ng-material-multilevel-menu>
+  </mat-sidenav>
+  <mat-sidenav-content style="overflow-y: clip;">
+    <mat-toolbar style="background-color: #FFFFFF  !important; border-bottom: 1px solid #00000029;"
+      class="mat-elevation-z8">
+      <button (click)="drawer.toggle()" mat-icon-button onclick="this.blur()" *ngIf="!(isHandset$ | async)">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="contenidoLogo"> <img style="width: 60px;" src="/assets/icon/logo.png" alt="">
+        <h2>ebolder</h2>
+      </div>
+      <span class="example-spacer"></span>
+      <div class="contenedor" *ngIf="(isHandset$ | async)">
+        <div class="imagen-circular">
+          <mat-icon>{{siglas}}</mat-icon>
+        </div>
+        <div class="textos">
+          <p class="texto-grande"><strong>Usuario</strong></p>
+          <p class="texto-pequeno">Administrador</p>
+        </div>
+      </div>
+
+      <button mat-icon-button class="icono-material" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item color="primary" (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar sesión</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <mat-drawer-container autosize *ngIf="(isHandset$ | async)">
+      <mat-drawer style="width: 17em;" class="menu-color" #drawer opened="true" mode="side" position="start">
+        <ng-material-multilevel-menu [configuration]='config' [items]='appitems' (selectedItem)="selectedItem($event)">
+        </ng-material-multilevel-menu>
+      </mat-drawer>
+      <mat-drawer-content>
+        <div style="height: 91vh;">
+          <router-outlet style="overflow-y: auto;"></router-outlet>
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
+    <div style="height: 93.1vh; overflow-y: auto;" *ngIf="!(isHandset$ | async)">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,79 @@
+.content {
+    padding-top: 10px;
+}
+
+.row {
+    margin: 1em 0;
+    display: flex;
+    gap: 10px;
+
+    mat-form-field {
+        width: 100%;
+        mat-label {
+            font-size: small;
+            padding-right: 1em;
+        }
+
+        mat-error {
+            font-size: smaller;
+        }
+    }
+}
+
+.row-full{
+
+    .select-rol{
+        width: 100%;
+    }
+
+    mat-form-field {
+        width: 100%;
+
+        mat-label {
+            font-size: small;
+            padding-right: 1em;
+        }
+    }
+}
+
+.action {
+    padding: 1em 1em 1em;
+
+    button {
+        border-radius: 20px;
+        padding: 1.5em 0;
+        font-size: 16px;
+        font-weight: 600;
+        flex: 1;
+    }
+}
+
+
+.dialog-container {
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+}
+
+@media only screen and (max-width: 1280px) {
+    .row {
+        display: grid;
+        grid-row: 1;
+        mat-form-field {
+            width: 100%;
+            mat-label {
+                font-size: small;
+                padding-right: 1em;
+            }
+            mat-error {
+                font-size: smaller;
+            }
+        }
+    }
+
+}

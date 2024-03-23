@@ -1,0 +1,31 @@
+.alert {
+    width: 200px;
+    height: auto;
+    padding: 1em;
+    text-align: center;
+
+
+    .title {
+        font-size: 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-bottom: .5em;
+    }
+
+    .input-text{
+        padding: 1em 0;
+        mat-form-field{
+            width: 100%;
+        }
+    }
+
+    p{
+        padding-bottom: 1em;
+    }
+
+    button{
+        width: 150px;
+        font-size: 16px;
+        border-radius: 20px;
+    }
+} 

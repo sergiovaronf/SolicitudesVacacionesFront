@@ -1,0 +1,65 @@
+<div class="nav">
+    <div class="items content_Cabecera">
+        <div class="left-item">
+            <div class="title">SOLICITUDES<span style="color: var(--primary-color);"> · </span> <span>VACACIONES</span></div>
+        </div>
+        <div class="right-item btn_and_search">
+            <button mat-raised-button color="primary" (click)="openAddEmployee()">
+                <mat-icon>add</mat-icon>
+                Nueva Empleado
+            </button>
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Empleado</mat-label>
+                <mat-select [(ngModel)]="user" placeholder="Seleccionar" (valueChange)="changeEmployee($event)">
+                    <mat-option *ngFor="let val of listUser" [value]="val">{{val?.empleado?.nombre + " " + val?.empleado?.apellido}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+ 
+    </div>
+    <div class="example-container table-container">
+        <div class="example-loading-shade" *ngIf="isLoadingResults">
+            <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        </div>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-paginator-custom">
+            <ng-container matColumnDef="fechaCreacion">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de Creación</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.fechaCreacion | date: 'dd/MM/yyyy'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="fechaInicio">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de Inicio</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.fechaInicio | date: 'dd/MM/yyyy'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="fechaFin">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Fin</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.fechaFin | date: 'dd/MM/yyyy'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="fechaRetorna">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Ingreso </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.fechaRetorna | date: 'dd/MM/yyyy' }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="diasSolicita">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Dias Solicitados</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.diasSolicita}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="estado">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </table>        
+    </div>
+    <div>
+        <hr class="linea-tabla">
+        <mat-paginator class="mat-paginator-custom" [hidePageSize]="true" [showFirstLastButtons]="true"
+            [length]="cantidad" [pageSize]="pageSize" (page)="changePage($event)">
+        </mat-paginator>
+    </div>
+</div>
