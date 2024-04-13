@@ -138,6 +138,10 @@ export class FormModalEmployeeComponent {
     }
   }
 
+  documentoError(){
+    return this.empForm.get('documento').hasError('required');
+  }
+
   createEmployee(data) {
     data.documento = parseInt(data.documento);
     return new Promise<any>((resolve) => {

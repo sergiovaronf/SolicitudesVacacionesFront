@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subject } from 'rxjs';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { FormModalEmployeeComponent } from './components/form-modal-employee/form-modal-employee.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
